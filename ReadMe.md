@@ -39,3 +39,13 @@ add to webpack config
 Add config keep page from being refreshed (under "devServer")
 
 ### Styling
+
+Adding styles (either scoped \<style> or separate CSS in "assets") causes webpack to crash (it doesn't know how to handle CSS). Fix: add a CSS loader; also, install it:
+
+npm install --save-dev css-loader vue-style-loader
+
+and, for pre-processing (.styl(us)):
+
+npm install --save-dev stylus stylus-loader
+
+### Babel
