@@ -18,10 +18,24 @@ Bundle dependencies. Loaders handle different file-types (e.g. CSS). See webpack
 
 "test" property specifies the file-type to use with a loader (regex).
 
-For Vue:\
+exclude node_modules for faster compiling
+
+### For Vue:
 npm install --save-dev vue-loader vue-template-compiler vue-style-loader css-loader
 
 in package.json:\
 "build": "webpack --config build/webpack.config.dev.js
 
 .html in root to load bundle (as dist/main.js).
+
+### To automatically rebuild on change
+npm install --save-dev webpack-dev-server\
+"dev": "webpack-dev-server --config build/webpack.config.dev.js"
+
+npm install --save-dev html-webpack-plugin
+Remove script to dist/main.js in index.html
+add to webpack config
+
+Add config keep page from being refreshed (under "devServer")
+
+### Styling
