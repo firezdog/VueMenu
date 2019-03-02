@@ -9,7 +9,7 @@ npm install --save-dev webpack webpack-cli
 * components -- building blocks
 * pages -- top level Vue components
 * router -- Vue router
-* app.js -- entrypoint
+* index.js-- entrypoint
 * App.vue -- root component
 
 ## Webpack
@@ -49,3 +49,23 @@ and, for pre-processing (.styl(us)):
 npm install --save-dev stylus stylus-loader
 
 ### Babel
+
+To transpile ES6 code into ES5 code.
+
+npm install --save-dev @babel/core babel-loader @babel/preset-env (and add to the loader config).  Create ./.babelrc
+
+### Linting
+
+npm install --save-dev eslint eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-config-standard babel-eslint eslint-loader eslint-plugin-vue
+
+add ./.eslintrc.js
+
+add "lint" script to package.json
+
+npm install --save-dev eslint-loader to lint automatically and update webpack config to use it.
+
+### Static Assets
+
+### Testing
+
+### Extract CSS
