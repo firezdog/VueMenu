@@ -35,7 +35,7 @@ export default {
       const item = this.menus[menuIndex][itemIndex]
       if (item.children && item.children.length > 0) {
         this.menus[menuIndex + 1] = item.children
-        this.menus = this.menus.slice()
+        this.menus = this.menus.slice(0, menuIndex + 2)
       } else {
         this.menus = this.menus.slice(0, menuIndex + 1)
       }
