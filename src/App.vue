@@ -1,16 +1,16 @@
 <template>
   <div class="full-width full-height center-content">
-    <hello-component :menu-data="[menus]" />
+    <Menu :menu-data="[menus]" />
   </div>
 </template>
 
 <script>
-import HelloComponent from './components/HelloComponent.vue'
+import Menu from './components/menu.vue'
 import menus from './menus.json'
 
 export default {
   components: {
-    HelloComponent
+    Menu
   },
   data () {
     return {

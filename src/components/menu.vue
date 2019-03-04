@@ -1,5 +1,8 @@
 <template>
-  <div class="menu">
+  <div
+    class="menu"
+    @mouseleave="menus = menus.slice(0,1); highlights = [];"
+  >
     <ul
       v-for="(menu, menuIndex) in menus"
       :key="menuIndex"
@@ -7,8 +10,8 @@
       <li
         v-for="(item, itemIndex) in menu"
         :key="`${menuIndex}-${itemIndex}`"
-        @mouseover="focus(menuIndex, itemIndex)"
         :class="[(highlights[menuIndex] === itemIndex) ? 'highlighted' : '']"
+        @mouseover="focus(menuIndex, itemIndex)"
       >
         Menu Item {{ item.name }}
       </li>
@@ -17,6 +20,8 @@
 </template>
 
 <script>
+import helper from '../middleware/debounce'
+
 export default {
   props: {
     menuData: {
@@ -33,15 +38,18 @@ export default {
   methods: {
     focus (menuIndex, itemIndex) {
       const item = this.menus[menuIndex][itemIndex]
+      const throughNextMenu = menuIndex + 2
+      const throughThisMenu = menuIndex + 1
       if (item.children && item.children.length > 0) {
         this.menus[menuIndex + 1] = item.children
-        this.menus = this.menus.slice(0, menuIndex + 2)
+        this.menus = this.menus.slice(0, throughNextMenu)
       } else {
-        this.menus = this.menus.slice(0, menuIndex + 1)
+        this.menus = this.menus.slice(0, throughThisMenu)
       }
       this.highlights[menuIndex] = itemIndex
-      this.highlights = this.highlights.slice(0, menuIndex + 1)
-    }
+      this.highlights = this.highlights.slice(0, throughThisMenu)
+    },
+    debounce: helper.debounce
   }
 }
 </script>
@@ -55,9 +63,9 @@ export default {
     list-style: none
     display: flex
     flex-direction: column
-    width: 150px
+    width: 200px
     background: lightgrey
-    padding: 1rem
+    padding-left: 0
     li
       padding: 1rem
       text-align: center
